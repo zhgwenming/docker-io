@@ -18,6 +18,7 @@ type Config struct {
 	AutoRestart                 bool
 	Dns                         []string
 	DnsSearch                   []string
+	VlanIface                   []string
 	EnableIptables              bool
 	EnableIpForward             bool
 	DefaultIp                   net.IP
@@ -59,6 +60,9 @@ func ConfigFromJob(job *engine.Job) *Config {
 	}
 	if dnsSearch := job.GetenvList("DnsSearch"); dnsSearch != nil {
 		config.DnsSearch = dnsSearch
+	}
+	if vlanIfaces := job.GetenvList("VlanIface"); len(vlanIfaces) != 0 {
+		config.VlanIface = vlanIfaces
 	}
 	if mtu := job.GetenvInt("Mtu"); mtu != 0 {
 		config.Mtu = mtu

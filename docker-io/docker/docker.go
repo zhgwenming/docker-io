@@ -60,6 +60,7 @@ func main() {
 		flExecDriver         = flag.String([]string{"e", "-exec-driver"}, "native", "Force the docker runtime to use a specific exec driver")
 		flHosts              = opts.NewListOpts(api.ValidateHost)
 		flMtu                = flag.Int([]string{"#mtu", "-mtu"}, 0, "Set the containers network MTU\nif no value is provided: default to the default route MTU or 1500 if no default route is available")
+		flVlanIface          = opts.NewListOpts(opts.ValidateIface)
 		flTls                = flag.Bool([]string{"-tls"}, false, "Use TLS; implied by tls-verify flags")
 		flTlsVerify          = flag.Bool([]string{"-tlsverify"}, false, "Use TLS and verify the remote (daemon: verify client, client: verify daemon)")
 		flCa                 = flag.String([]string{"-tlscacert"}, dockerConfDir+defaultCaFile, "Trust only remotes providing a certificate signed by the CA given here")
@@ -70,6 +71,7 @@ func main() {
 	flag.Var(&flDns, []string{"#dns", "-dns"}, "Force docker to use specific DNS servers")
 	flag.Var(&flDnsSearch, []string{"-dns-search"}, "Force Docker to use specific DNS search domains")
 	flag.Var(&flHosts, []string{"H", "-host"}, "The socket(s) to bind to in daemon mode\nspecified using one or more tcp://host:port, unix:///path/to/socket, fd://* or fd://socketfd.")
+	flag.Var(&flVlanIface, []string{"#netif", "-netif"}, "Attach containers to a pre-existing network interface")
 	flag.Var(&flGraphOpts, []string{"-storage-opt"}, "Set storage driver options")
 
 	flag.Parse()
@@ -161,6 +163,7 @@ func main() {
 			job.SetenvList("GraphOptions", flGraphOpts.GetAll())
 			job.Setenv("ExecDriver", *flExecDriver)
 			job.SetenvInt("Mtu", *flMtu)
+			job.SetenvList("VlanIface", flVlanIface.GetAll())
 			job.SetenvBool("EnableSelinuxSupport", *flSelinuxEnabled)
 			if err := job.Run(); err != nil {
 				log.Fatal(err)

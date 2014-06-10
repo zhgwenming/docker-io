@@ -15,6 +15,16 @@ lxc.network.type = veth
 lxc.network.link = {{.Network.Interface.Bridge}}
 lxc.network.name = eth0
 lxc.network.mtu = {{.Network.Mtu}}
+{{range .Network.VlanIface}}
+# pethN
+lxc.network.type= macvlan
+lxc.network.name= p{{.}}
+lxc.network.link= {{.}}
+lxc.network.macvlan.mode=bridge
+lxc.network.flags=up
+{{else}}
+# -net-if not specified
+{{end}}
 {{else if .Network.HostNetworking}}
 lxc.network.type = none
 {{else}}

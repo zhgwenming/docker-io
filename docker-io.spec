@@ -10,7 +10,7 @@
 
 Name:           docker-io
 Version:        1.0.0
-Release:        1%{?dist}
+Release:        905.1%{?dist}
 Summary:        Automates deployment of containerized applications
 License:        ASL 2.0
 Patch1:         upstream-patched-archive-tar.patch
@@ -63,7 +63,7 @@ and tests on a laptop will run at scale, in production*, on VMs, bare-metal
 servers, OpenStack clusters, public instances, or combinations of the above.
 
 %prep
-%setup -q -n docker-%{version}
+%setup -q -n docker-io
 rm -rf vendor
 %patch1 -p1 -F 2 -b upstream-patched-archive-tar
 cp -p %{SOURCE1} contrib/init/sysvinit-redhat/docker.sysconfig

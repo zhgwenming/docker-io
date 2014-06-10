@@ -3,6 +3,7 @@ package opts
 import (
 	"fmt"
 	"github.com/dotcloud/docker/utils"
+	"net"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -126,6 +127,14 @@ func ValidateEnv(val string) (string, error) {
 		return val, nil
 	}
 	return fmt.Sprintf("%s=%s", val, os.Getenv(val)), nil
+}
+
+func ValidateIface(ifname string) (string, error) {
+	if _, err := net.InterfaceByName(ifname); err != nil {
+		return "", err
+	} else {
+		return ifname, err
+	}
 }
 
 func ValidateIp4Address(val string) (string, error) {
