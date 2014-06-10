@@ -157,7 +157,7 @@ func populateCommand(c *Container, env []string) error {
 
 	en = &execdriver.Network{
 		Mtu:       c.daemon.config.Mtu,
-		VlanIface: c.runtime.config.VlanIface,
+		VlanIface: c.daemon.config.VlanIface,
 		Interface: nil,
 	}
 
