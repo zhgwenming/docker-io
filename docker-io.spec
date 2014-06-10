@@ -17,7 +17,7 @@ Patch1:         upstream-patched-archive-tar.patch
 URL:            http://www.docker.io
 # only x86_64 for now: https://github.com/dotcloud/docker/issues/136
 ExclusiveArch:  x86_64
-Source0:        https://github.com/dotcloud/docker/archive/v%{version}.tar.gz
+Source0:        docker-io-%{version}.tar.gz
 Source1:        docker.sysconfig
 # though final name for sysconf/sysvinit files is simply 'docker',
 # having .sysvinit and .sysconfig makes things clear
