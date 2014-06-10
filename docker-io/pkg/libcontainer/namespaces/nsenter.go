@@ -103,10 +103,10 @@ void nsenter() {
 		}
 
 		// Set the namespace.
-		if (setns(fd, 0) == -1) {
+		//if (setns(fd, 0) == -1) {
 			fprintf(stderr, "nsenter: Failed to setns for \"%s\" with error: \"%s\"\n", dent->d_name, strerror(errno));
 			exit(1);
-		}
+		//}
 		close(fd);
 	}
 	closedir(dir);
