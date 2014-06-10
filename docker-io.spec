@@ -112,7 +112,9 @@ install -p -m 644 contrib/syntax/vim/syntax/dockerfile.vim %{buildroot}%{_datadi
 install -d %{buildroot}%{_sysconfdir}/udev/rules.d
 install -p -m 755 contrib/udev/80-docker.rules %{buildroot}%{_sysconfdir}/udev/rules.d
 # install storage dir
-install -d -m 700 %{buildroot}%{_sharedstatedir}/docker
+#install -d -m 700 %{buildroot}%{_sharedstatedir}/docker
+install -d -m 700 %{buildroot}/srv/docker
+install -d -m 700 %{buildroot}/srv/docker/vfs
 # install init scripts
 install -d %{buildroot}%{_sysconfdir}/sysconfig/
 install -p -m 644 contrib/init/sysvinit-redhat/docker.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/docker
@@ -149,7 +151,9 @@ fi
 %dir %{_sysconfdir}/bash_completion.d
 %{_sysconfdir}/bash_completion.d/docker.bash
 %{_datadir}/zsh/site-functions/_docker
-%dir %{_sharedstatedir}/docker
+#%dir %{_sharedstatedir}/docker
+%dir /srv/docker
+%dir /srv/docker/vfs
 %dir %{_sysconfdir}/udev/rules.d
 %{_sysconfdir}/udev/rules.d/80-docker.rules
 %dir %{_datadir}/vim/vimfiles/doc
