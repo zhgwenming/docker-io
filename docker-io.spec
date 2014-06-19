@@ -10,7 +10,7 @@
 
 Name:           docker-io
 Version:        1.0.0
-Release:        906.1%{?dist}
+Release:        907.1%{?dist}
 Summary:        Automates deployment of containerized applications
 License:        ASL 2.0
 Patch1:         upstream-patched-archive-tar.patch
@@ -33,7 +33,7 @@ BuildRequires:  golang(github.com/godbus/dbus)
 BuildRequires:  golang(github.com/coreos/go-systemd) >= 0-0.4
 BuildRequires:  golang(code.google.com/p/go.net/websocket)
 BuildRequires:  golang(code.google.com/p/gosqlite/sqlite3)
-BuildRequires:  golang(github.com/syndtr/gocapability/capability)
+BuildRequires:  golang(github.com/syndtr/gocapability/capability) >= 0-0.7.git3c85049
 BuildRequires:  device-mapper-devel
 Requires(post):     chkconfig
 Requires(preun):    chkconfig
