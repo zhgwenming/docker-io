@@ -220,6 +220,7 @@ func parseRun(cmd *flag.FlagSet, args []string, sysInfo *sysinfo.SysInfo) (*Conf
 		NetworkDisabled: !*flNetwork,
 		OpenStdin:       *flStdin,
 		Memory:          flMemory,
+		MemorySwap:      flMemory + flMemory/2,
 		CpuShares:       *flCpuShares,
 		Cpuset:          *flCpuset,
 		AttachStdin:     flAttach.Get("stdin"),

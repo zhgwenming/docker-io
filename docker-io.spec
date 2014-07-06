@@ -10,7 +10,7 @@
 
 Name:           docker-io
 Version:        1.0.0
-Release:        907.1%{?dist}
+Release:        908.1%{?dist}
 Summary:        Automates deployment of containerized applications
 License:        ASL 2.0
 Patch1:         upstream-patched-archive-tar.patch
