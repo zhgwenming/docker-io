@@ -10,7 +10,7 @@
 
 Name:           docker-io
 Version:        1.0.0
-Release:        908.1%{?dist}
+Release:        909.1%{?dist}
 Summary:        Automates deployment of containerized applications
 License:        ASL 2.0
 Patch1:         upstream-patched-archive-tar.patch
@@ -164,6 +164,9 @@ fi
 %{_datadir}/vim/vimfiles/syntax/dockerfile.vim
 
 %changelog
+* Tue Jul 14 2014 Wenming Zhang <zhgwenming@gmail.com> - 1.0.0-909.1
+- fix port allocation issue - upstream pull #6682
+
 * Mon Jun 09 2014 Lokesh Mandvekar <lsm5@fedoraproject.org> - 1.0.0-1
 - upstream version bump to v1.0.0
 
