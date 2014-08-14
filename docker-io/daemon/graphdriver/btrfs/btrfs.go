@@ -5,7 +5,7 @@ package btrfs
 /*
 #include <stdlib.h>
 #include <dirent.h>
-//#include <btrfs/ioctl.h>
+#include <btrfs/ioctl.h>
 */
 import "C"
 

@@ -13,6 +13,19 @@ package namespaces
 #include <sys/types.h>
 #include <unistd.h>
 
+// Use raw setns syscall for versions of glibc that don't include it (namely glibc-2.12)
+#if __GLIBC__ == 2 && __GLIBC_MINOR__ < 14
+#define _GNU_SOURCE
+#include <sched.h>
+#include "syscall.h"
+#ifdef SYS_setns
+int setns(int fd, int nstype)
+{
+        return syscall(SYS_setns, fd, nstype);
+}
+#endif
+#endif
+
 static const kBufSize = 256;
 
 void get_args(int *argc, char ***argv) {
@@ -103,10 +116,10 @@ void nsenter() {
 		}
 
 		// Set the namespace.
-		//if (setns(fd, 0) == -1) {
+		if (setns(fd, 0) == -1) {
 			fprintf(stderr, "nsenter: Failed to setns for \"%s\" with error: \"%s\"\n", dent->d_name, strerror(errno));
 			exit(1);
-		//}
+		}
 		close(fd);
 	}
 	closedir(dir);
